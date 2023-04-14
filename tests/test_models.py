@@ -46,6 +46,10 @@ class TestAccount(unittest.TestCase):
     #  T E S T   C A S E S
     ######################################################################
 
+    def test_init(self):
+        account = Account()
+        self.assertIsNone(account.id)
+        
     def test_create_an_account(self):
         """It should Create an Account and assert that it exists"""
         fake_account = AccountFactory()
@@ -175,3 +179,11 @@ class TestAccount(unittest.TestCase):
         """It should not Deserialize an account with a TypeError"""
         account = Account()
         self.assertRaises(DataValidationError, account.deserialize, [])
+
+    def test_repr(self):
+            account = Account(name='Test Account', id=123)
+            self.assertEqual(str(account), "<Account Test Account id=[123]>")
+
+    def test_repr_no_id(self):
+        account = Account(name='Test Account')
+        self.assertEqual(str(account), "<Account Test Account id=[None]>")
