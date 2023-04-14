@@ -134,7 +134,22 @@ class TestAccountService(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(data["name"], account.name)
+    
     def test_get_account_not_found(self):
         """It should not Read an Account that is not found"""
         resp = self.client.get(f"{BASE_URL}/0")
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
+    
+    def test_list_accounts(self):
+        """Test listing all accounts when no accounts exist"""
+        # Clear all accounts
+        Account.remove_all()
+
+        # Make GET request to /accounts endpoint
+        response = self.client.get("/accounts")
+
+        # Check that the response has a 200_OK status code
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        # Check that an empty list is returned
+        self.assertEqual(response.json, [])
