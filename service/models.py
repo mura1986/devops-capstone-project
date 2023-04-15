@@ -74,7 +74,7 @@ class PersistentBase:
         """Finds a record by it's ID"""
         logger.info("Processing lookup for id %s ...", by_id)
         return cls.query.get(by_id)
-    
+
     @classmethod
     def clear(cls):
         """Removes all records from the database"""
@@ -85,11 +85,12 @@ class PersistentBase:
 ######################################################################
 #  A C C O U N T   M O D E L
 ######################################################################
+
+
 class Account(db.Model, PersistentBase):
     """
     Class that represents an Account
     """
-
     app = None
 
     # Table Schema
@@ -149,7 +150,7 @@ class Account(db.Model, PersistentBase):
         """
         logger.info("Processing name query for %s ...", name)
         return cls.query.filter(cls.name == name)
-    
+
     @classmethod
     def remove_all(cls):
         cls.clear()
