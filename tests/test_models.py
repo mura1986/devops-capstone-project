@@ -49,7 +49,7 @@ class TestAccount(unittest.TestCase):
     def test_init(self):
         account = Account()
         self.assertIsNone(account.id)
-        
+
     def test_create_an_account(self):
         """It should Create an Account and assert that it exists"""
         fake_account = AccountFactory()
@@ -181,8 +181,8 @@ class TestAccount(unittest.TestCase):
         self.assertRaises(DataValidationError, account.deserialize, [])
 
     def test_repr(self):
-            account = Account(name='Test Account', id=123)
-            self.assertEqual(str(account), "<Account Test Account id=[123]>")
+        account = Account(name='Test Account', id=123)
+        self.assertEqual(str(account), "<Account Test Account id=[123]>")
 
     def test_repr_no_id(self):
         account = Account(name='Test Account')
